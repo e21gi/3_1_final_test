@@ -31,11 +31,15 @@
 
 이중에 기계 학습 기능이있는 6 축 IMU 에서 3D 가속도계 이용
 
+-블럭도
+<img width="1280" alt="프랩 1학기 기말 블럭도" src="https://user-images.githubusercontent.com/103232926/174533345-09777005-2e67-4549-bd3f-68ac70152e59.png">
+
+
 ![크기변환 크기변환 rp2040-nano_low](https://user-images.githubusercontent.com/103232926/174289683-07d8ae67-9a7c-4a90-a3a9-69ff46857f82.gif)
 
 자이로센서를 위에서 수직으로 잡고 움직인다고 가정하고 z축의 값에 따라서 뛰는 것,걷는 것,멈춤을 판단
 
--영상 순서
+-영상 설명
 
 1.팔이 멈춰있을때
  서보모터 각도 -> 각도를 0도에서 10도 
@@ -195,3 +199,4 @@ def run():
 if __name__ == '__main__':
     run()
 ```
+<img width="554" alt="프랩 유튜브" src="https://user-images.githubusercontent.com/103232926/174533921-4647f3bc-4c1d-43bd-a311-2bee83173bac.PNG">
