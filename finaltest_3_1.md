@@ -58,6 +58,54 @@
 
 https://user-images.githubusercontent.com/103232926/174298809-17cbb235-74a1-420d-ae4a-bf0477d99722.mp4
 
+```
+import network,time
+from umqtt.simple import MQTTClient #导入MQTT板块
+from machine import I2C,Pin,Timer
+from lsm6dsox import LSM6DSOX
+
+lsm = LSM6DSOX(I2C(0, scl=Pin(13), sda=Pin(12)))
+
+step1 = 0
+
+def WIFI_Connect():
+    wlan = network.WLAN(network.STA_IF) #STA模式
+    wlan.active(True)                   #激活接口
+    start_time=time.time()              #记录时间做超时判断
+
+    if not wlan.isconnected():
+        print('connecting to network...')
+        wlan.connect('13326-2GHz', 'iac-4701') #输入WIFI账号密码
+        
+    if wlan.isconnected():
+        print('network information:', wlan.ifconfig())
+        return True    
+
+def MQTT_Send(tim):
+    #global step1
+    client.publish(TOPIC, 'Accelerometer: x:{:>8.3f} y:{:>8.3f} z:{:>8.3f}'.format(*lsm.read_accel()))
+    #step1 = step1 +1
+    #print(step1)
+    print('Accelerometer: x:{:>8.3f} y:{:>8.3f} z:{:>8.3f}'.format(*lsm.read_accel()))
+    
+    #print('Gyroscope:     x:{:>8.3f} y:{:>8.3f} z:{:>8.3f}'.format(*lsm.read_gyro()))
+    print("")
+    time.sleep_ms(100)
+
+if WIFI_Connect():
+    SERVER = '192.168.0.19'   # my rapa ip address , mqtt broker가 실행되고 있음
+    PORT = 1883
+    CLIENT_ID = 'Won' # clinet id 이름
+    TOPIC = 'rp2040' # TOPIC 이름
+    client = MQTTClient(CLIENT_ID, SERVER, PORT,keepalive=30)
+    client.connect()
+
+    #开启RTOS定时器，编号为-1,周期1000ms，执行socket通信接收任务
+    tim = Timer(-1)
+    tim.init(period=1000, mode=Timer.PERIODIC,callback=MQTT_Send)
+```
+
+
 
 
 ```
