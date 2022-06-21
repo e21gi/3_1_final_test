@@ -69,13 +69,13 @@ lsm = LSM6DSOX(I2C(0, scl=Pin(13), sda=Pin(12)))
 step1 = 0
 
 def WIFI_Connect():
-    wlan = network.WLAN(network.STA_IF) #STA模式
-    wlan.active(True)                   #激活接口
-    start_time=time.time()              #记录时间做超时判断
+    wlan = network.WLAN(network.STA_IF) 
+    wlan.active(True)                   
+    start_time=time.time()             
 
     if not wlan.isconnected():
         print('connecting to network...')
-        wlan.connect('13326-2GHz', 'iac-4701') #输入WIFI账号密码
+        wlan.connect('13326-2GHz', 'iac-4701') 
         
     if wlan.isconnected():
         print('network information:', wlan.ifconfig())
@@ -100,7 +100,6 @@ if WIFI_Connect():
     client = MQTTClient(CLIENT_ID, SERVER, PORT,keepalive=30)
     client.connect()
 
-    #开启RTOS定时器，编号为-1,周期1000ms，执行socket通信接收任务
     tim = Timer(-1)
     tim.init(period=1000, mode=Timer.PERIODIC,callback=MQTT_Send)
 ```
