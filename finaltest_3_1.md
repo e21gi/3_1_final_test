@@ -32,7 +32,8 @@
 이중에 기계 학습 기능이있는 6 축 IMU 에서 3D 가속도계 이용
 
 -블럭도
-<img width="1280" alt="프랩 1학기 기말 블럭도" src="https://user-images.githubusercontent.com/103232926/174533345-09777005-2e67-4549-bd3f-68ac70152e59.png">
+<img width="1205" alt="프랩 1학기 기말 블럭도 수정" src="https://user-images.githubusercontent.com/103232926/174749257-503dc0d1-820d-45cd-8c2d-1a1871aa4720.png">
+
 
 
 ![크기변환 크기변환 rp2040-nano_low](https://user-images.githubusercontent.com/103232926/174289683-07d8ae67-9a7c-4a90-a3a9-69ff46857f82.gif)
